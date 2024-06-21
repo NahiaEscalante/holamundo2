@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = "http://127.0.0.1:8080";
+const URL = "http://127.0.0.1:80";
 
 export const fetchLogin = async (body) => {
   try {
@@ -26,6 +26,16 @@ export const fetchRegister = async (body) => {
   }
 };
 
+export const postProduct = async(body) => {
+  const token = localStorage.getItem('token');
+  const response = await axios.post(`${url}/api/products`, body,{
+      headers: { Authorization: `Bearer ${token}`}
+  });
+  return response.data;
+}
+
+
+
 export const fetchGetRides = async (page, size) => {
   try {
     const response = await axios.get(
@@ -38,9 +48,9 @@ export const fetchGetRides = async (page, size) => {
   }
 };
 
-export const patchRide = async(id,body)=>{
+export const putRide = async(id,body)=>{
   try{
-    const response= await axios(`${URL}/ride/${id}/status`, body,
+    const response= await axios.put(`${URL}/ride/${id}/status`, body,
     {
       headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
     }
@@ -49,8 +59,6 @@ export const patchRide = async(id,body)=>{
   }catch(error){
     console.error(error);
   }
- 
-
 }
 
 

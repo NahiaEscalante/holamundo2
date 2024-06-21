@@ -12,11 +12,14 @@ const Dashboard = () => {
         const response = await fetchGetRides(0, 2);
         setdata(response.data.content);
       } catch (error) {
+        
         console.error(error);
       }
     };
     getRides();
   }, [render]);
+
+  
 
 
   const handleDelete= async(id)=>{
