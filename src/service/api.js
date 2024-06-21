@@ -28,7 +28,7 @@ export const fetchRegister = async (body) => {
 
 export const postProduct = async(body) => {
   const token = localStorage.getItem('token');
-  const response = await axios.post(`${url}/api/products`, body,{
+  const response = await axios.post(`${URL}/api/products`, body,{
       headers: { Authorization: `Bearer ${token}`}
   });
   return response.data;
